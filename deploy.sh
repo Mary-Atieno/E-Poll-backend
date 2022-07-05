@@ -18,7 +18,7 @@ heroku config:set SECRET_KEY='django-insecure-h-4_vq % @6x462t8ly = k = +8os_54n
 heroku config:set ALLOWED_HOSTS=e-poll-backend.herokuapp.com
 git switch -c main
 git switch main
-git merge develop
+# git merge develop
 python manage.py collectstatic
 pip freeze > requirements.txt
 git add .
