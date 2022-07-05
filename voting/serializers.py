@@ -17,7 +17,7 @@ class CandidateSerializer(serializers.HyperlinkedModelSerializer):
 class VoterSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Voter
-        fields = ['url', 'phone', 'otp', 'otp_sent', 'voted', 'verified']
+        fields = ['url', 'name', 'phone', 'otp', 'otp_sent', 'voted', 'verified']
 # ('__all__')
 
 class VotesSerializer(serializers.HyperlinkedModelSerializer):
