@@ -1,5 +1,5 @@
-python manage.py makemigrations
-python manage.py migrate
+python3 manage.py makemigrations
+python3 manage.py migrate
 # heroku config:set EMAIL_USE_TLS=True
 # heroku config:set EMAIL_HOST='smtp.gmail.com'
 # heroku config:set EMAIL_PORT=587
@@ -19,14 +19,14 @@ python manage.py migrate
 git switch -c main
 git switch main
 # git merge develop
-python manage.py collectstatic
+python3 manage.py collectstatic
 pip freeze > requirements.txt
 git add .
 
 git commit -m "heroku deployment"
 git push heroku main
-heroku run python manage.py makemigrations
-heroku run python manage.py migrate
+heroku run python3 manage.py makemigrations
+heroku run python3 manage.py migrate
 # heroku pg:reset
 # heroku pg:push eloan DATABASE_URL --app eloan-ke
 git switch develop
