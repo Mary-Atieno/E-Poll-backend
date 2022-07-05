@@ -5,15 +5,16 @@ from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class Voter(models.Model):
+    name = models.CharField(max_length=50, unique=True)
     admin = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     phone = models.CharField(max_length=11, unique=True)  
-    otp = models.CharField(max_length=10, null=True)
+    otp = models.IntegerField()
     verified = models.BooleanField(default=False)
     voted = models.BooleanField(default=False)
     otp_sent = models.IntegerField(default=0)  
 
     def __str__(self):
-        return self.admin.last_name + ", " + self.admin.first_name
+        return self.name
 
 
 class Position(models.Model):
