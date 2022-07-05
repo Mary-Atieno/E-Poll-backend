@@ -1,25 +1,18 @@
 from rest_framework import serializers
-from accounts.models import *
+from accounts.models import CustomUser
 
 
 class CustomUserSerializer(serializers.ModelSerializer):
-    # url = serializers.HyperlinkedIdentityField(view_name='users-detail')
-
     class Meta:
         model = CustomUser
         fields = [
             'id',
-            'username',
-            'first_name',
-            'last_name',
             'email',
-            'user_type',
-        ]
+            'password']
         extra_kwargs = {
             'password': {'write_only': True}
         }
 
-  
     def create(self, validated_data):
         password = validated_data.pop('password', None)
         instance = self.Meta.model(**validated_data)

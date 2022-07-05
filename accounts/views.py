@@ -1,40 +1,19 @@
-from django.shortcuts import render
 from rest_framework.views import APIView
-from accounts.models import *
 from rest_framework.response import Response
-from accounts.serializers import CustomUserSerializer
-
-from rest_framework.exceptions import AuthenticationFailed
-import jwt, datetime
+from .serializers import CustomUserSerializer
 
 # Create your views here.
-class RegisterView(APIView):
+
+class VoterRegisterView(APIView):
     def post(self, request):
         serializer = CustomUserSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        serializer.save()
+        serializer.save(is_voter=True)
         return Response(serializer.data)
-
-class LoginView(APIView):
+        
+class AdminRegisterView(APIView):
     def post(self, request):
-        username = request.data['username']
-        password = request.data['password']
-        user = CustomUser.objects.filter(username=username).first()
-        print(password)
-        print(user)
-        if user is None:
-            raise AuthenticationFailed('User not found!')
-        if not user.check_password(password):
-            raise AuthenticationFailed('Incorrect password!')
-        payload = {
-            'id': user.id,
-            'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=60),
-            'iat': datetime.datetime.utcnow()
-        }
-        token = jwt.encode(payload, 'secret', algorithm='HS256').decode('utf-8')
-        response = Response()
-        response.set_cookie(key='jwt', value=token, httponly=True)
-        response.data = {
-            'jwt': token
-        }
-        return response
+        serializer = CustomUserSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save(is_active=True, is_staff=True, is_superuser=True)
+        return Response(serializer.data)
