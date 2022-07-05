@@ -6,9 +6,9 @@ from cloudinary.models import CloudinaryField
 # Create your models here.
 class Voter(models.Model):
     admin = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
     phone = models.CharField(max_length=11, unique=True)  
-    name = models.CharField(max_length=50, unique=True)
-    otp = models.CharField(max_length=10, null=False)
+    otp = models.CharField(max_length=10)
     verified = models.BooleanField(default=False)
     voted = models.BooleanField(default=False)
     otp_sent = models.IntegerField(default=0)  
