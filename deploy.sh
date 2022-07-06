@@ -29,5 +29,5 @@ git push heroku main
 # heroku run python3 manage.py migrate
 heroku pg:reset
 heroku pg:push poll DATABASE_URL --app e-poll-backend
-git switch develop
+# git switch develop
 heroku open
