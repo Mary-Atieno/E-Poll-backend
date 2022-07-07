@@ -17,6 +17,7 @@ import cloudinary.api
 from decouple import config
 import django_heroku
 import dj_database_url
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -189,7 +190,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SEND_OTP = False  # If you toggle this to False, Kindly use 0000 as your OTP
 
+
+JWT_AUTH = {
+    'JWT_ALLOW_REFRESH': True,
+    'JWT_EXPIRATION_DELTA': timedelta(days=2),
+}
+
 # Heroku: Update database configuration from $DATABASE_URL.
-db_from_env = dj_database_url.config(conn_max_age=500)
+
+db_from_env = dj_database_url.config(conn_max_age=31536000)
+
 DATABASES['default'].update(db_from_env)
 django_heroku.settings(locals())
