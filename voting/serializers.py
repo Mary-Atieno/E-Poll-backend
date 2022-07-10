@@ -11,7 +11,7 @@ class PositionSerializer(serializers.HyperlinkedModelSerializer):
 class CandidateSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Candidate
-        fields = ['url', 'fullname', 'image', 'bio']
+        fields = ['url', 'fullname', 'image', 'bio', 'position']
 
 # admin??
 class VoterSerializer(serializers.HyperlinkedModelSerializer):
