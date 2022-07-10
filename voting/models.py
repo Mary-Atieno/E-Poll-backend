@@ -7,11 +7,11 @@ from cloudinary.models import CloudinaryField
 class Voter(models.Model):
     admin = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
+    email = models.EmailField(max_length=255)
     phone = models.CharField(max_length=11, unique=True)  
-    otp = models.CharField(max_length=10)
     verified = models.BooleanField(default=False)
     voted = models.BooleanField(default=False)
-    otp_sent = models.IntegerField(default=0)  
+     
 
     def __str__(self):
         return self.name
