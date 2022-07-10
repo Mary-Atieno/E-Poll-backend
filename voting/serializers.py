@@ -8,16 +8,19 @@ class PositionSerializer(serializers.HyperlinkedModelSerializer):
         model = Position
         fields = ['url', 'name', 'max_vote', 'priority' ]
 
+
 class CandidateSerializer(serializers.HyperlinkedModelSerializer):
+    image = serializers.ImageField()
+    
     class Meta:
         model = Candidate
         fields = ['url', 'fullname', 'image', 'bio', 'position']
 
 # admin??
-class VoterSerializer(serializers.HyperlinkedModelSerializer):
+class VoterSerializer(serializers.ModelSerializer):
     class Meta:
         model = Voter
-        fields = ['admin', 'name', 'email', 'phone', 'voted', 'verified']
+        fields = ['admin', 'name', 'phone', 'email', 'voted', 'verified']
 # ('__all__')
 
 class VotesSerializer(serializers.HyperlinkedModelSerializer):

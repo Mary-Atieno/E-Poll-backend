@@ -10,8 +10,7 @@ class Voter(models.Model):
     email = models.EmailField(max_length=255)
     phone = models.CharField(max_length=11, unique=True)  
     verified = models.BooleanField(default=False)
-    voted = models.BooleanField(default=False)
-     
+    voted = models.BooleanField(default=False) 
 
     def __str__(self):
         return self.name
