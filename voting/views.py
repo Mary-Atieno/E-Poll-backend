@@ -3,13 +3,14 @@ from django.contrib.auth.models import *
 from rest_framework import viewsets
 from rest_framework import permissions
 from voting.serializers import *
-# from rest_framework.decorators import api_view
+from rest_framework.decorators import APIView
+from rest_framework.views import APIView
 
 # Create your views here.
 
 
 # @api_view(['GET','PUT', 'POST', 'DELETE'])
-class PositionViewSet(viewsets.ModelViewSet):
+class PositionViewSet(viewsets.ModelViewSet, APIView):
     """
     API endpoint that allows position to be viewed or edited.
     """
@@ -19,7 +20,7 @@ class PositionViewSet(viewsets.ModelViewSet):
 
 
 # @api_view(['GET', 'PUT', 'POST', 'DELETE'])
-class CandidateViewSet(viewsets.ModelViewSet):
+class CandidateViewSet(viewsets.ModelViewSet, APIView):
     """
     API endpoint that allows candidates to be viewed or edited.
     """
@@ -37,7 +38,7 @@ class CandidateViewSet(viewsets.ModelViewSet):
 #         data = serializer.validate_data
 
 # @api_view(['GET', 'PUT', 'POST', 'DELETE'])
-class VoterViewSet(viewsets.ModelViewSet):
+class VoterViewSet(viewsets.ModelViewSet, APIView):
     """
     API endpoint that allows voters to be viewed or edited.
     """
@@ -47,7 +48,7 @@ class VoterViewSet(viewsets.ModelViewSet):
 
 
 # @api_view(['GET', 'PUT', 'POST', 'DELETE'])
-class VotesViewSet(viewsets.ModelViewSet):
+class VotesViewSet(viewsets.ModelViewSet, APIView):
     """
     API endpoint that allows votes to be viewed or edited.
     """
